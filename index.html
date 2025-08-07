@@ -1,50 +1,69 @@
 <!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>P1ETER — profile</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>p1eter — O mnie</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <header class="tabs" role="tablist" aria-label="Nawigacja sekcji">
-    <button role="tab" aria-selected="true" data-target="tab-1">Intro</button>
-    <button role="tab" data-target="tab-2">Programowanie</button>
-    <button role="tab" data-target="tab-3">Inspiracja</button>
-    <button role="tab" data-target="tab-4">Plany</button>
-    <button role="tab" data-target="tab-5">Kontakt</button>
-  </header>
-
-  <main>
-    <section id="tab-1" class="tabpanel" role="tabpanel" tabindex="0">
-      <p>Cześć! Tu p1eter
-      Mam 15 lat i jestem polakiem. Interesuję się technologią, uwielbiam nowinki technologiczne, a także odkrywać, jak działają różne urządzenia. Lubię również bawić się sztuczną inteligencją – jest to świetnym rozwiązaniem na nudę.</p>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <main id="main" class="card" tabindex="-1">
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <!--
+        To change tab labels, edit the <button>s below.
+        Order must match the section order in the content array in script.js.
+      -->
+      <button role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true" tabindex="0">O mnie</button>
+      <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false" tabindex="-1">Programowanie</button>
+      <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">Inspiracja</button>
+      <button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">Plany</button>
+      <button role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1">Kontakt</button>
+    </nav>
+    <section 
+      id="panel-0" 
+      class="tabpanel active" 
+      role="tabpanel" 
+      aria-labelledby="tab-0"
+      tabindex="0"
+    >
+      <!--
+        To change Polish content, edit the content array in script.js.
+        This element will be populated by JS for accessibility and animation.
+      -->
     </section>
-
-    <section id="tab-2" class="tabpanel" role="tabpanel" hidden>
-      <p>Od niedawna uczę się programować, nie tylko w pythonie ale też w javascipt. Nie jestem jeszcze najlepszym programistą, ale znam podstawy pythona i javasript, a także HTML i CSS i staram się cały czas uczyć nowych rzeczy.</p>
-    </section>
-
-    <section id="tab-3" class="tabpanel" role="tabpanel" hidden>
-      <p>Chciałbym zaznaczyć, iż wygląd strony jest inspirowany stroną zrobioną przez patricktbp.</p>
-    </section>
-
-    <section id="tab-4" class="tabpanel" role="tabpanel" hidden>
-      <h2>Co mam w planach zrobić</h2>
-      <p>Nauczyć się programowawnia jeszcze lepiej, aby w przyszłosci kontynuować swoją pasje. Napisać jakąś gre.</p>
-    </section>
-
-    <section id="tab-5" class="tabpanel" role="tabpanel" hidden>
-      <h2>Gdzie możesz mnie znaleźć</h2>
-      <p>Możesz mnie znaleźć i porozmawiać na platformie Discord pod nazwą <strong>p1eter__</strong> lub śledząc mój profil na Tiktoku o nazwie <strong>p1eter6</strong>, a także na tej stronie. Jeśli wolisz kontakt bardziej bezpośredni, możesz napisać do mnie maila: <a href="mailto:juzephsigma@gmail.com">juzephsigma@gmail.com</a>.</p>
-      <p class="links">
-        <a href="https://discord.com" target="_blank" rel="noopener">Discord — p1eter__</a>
-        <a href="https://www.tiktok.com/@p1eter6" target="_blank" rel="noopener">TikTok — @p1eter6</a>
-      </p>
-    </section>
+    <section id="panel-1" class="tabpanel" role="tabpanel" aria-labelledby="tab-1" tabindex="0"></section>
+    <section id="panel-2" class="tabpanel" role="tabpanel" aria-labelledby="tab-2" tabindex="0"></section>
+    <section id="panel-3" class="tabpanel" role="tabpanel" aria-labelledby="tab-3" tabindex="0"></section>
+    <section id="panel-4" class="tabpanel" role="tabpanel" aria-labelledby="tab-4" tabindex="0"></section>
+    <footer class="footer">
+      <!-- Contact links (edit href/usernames below to update) -->
+      <a href="https://discord.com" class="contact-link" target="_blank" rel="noopener" aria-label="Discord (p1eter__ opens in new tab)">
+        <svg aria-hidden="true" viewBox="0 0 32 32" width="20" height="20" fill="currentColor" focusable="false">
+          <circle cx="16" cy="16" r="16" fill="#5865F2"/>
+          <path d="M22 23c-1.5.5-3 .9-4.5.9s-3-.4-4.5-.9c-.1 0-.2-.1-.2-.2l-.3-1.1c0-.1 0-.2.1-.2.2-.1.3-.2.5-.3.1-.1.2-.3.2-.4.1-.3.2-.7.3-1 .1-.2 0-.3-.1-.4-1.2-.2-2.4-.5-3.5-1-.1 0-.2-.2-.2-.3.2-2.4 1.2-4.5 2.8-6.3.1-.1.2-.1.3-.1.2.1.4.2.6.2 1.2.3 2.4.5 3.6.5s2.4-.2 3.6-.5c.2 0 .4-.1.6-.2.1 0 .2 0 .3.1 1.6 1.8 2.6 3.9 2.8 6.3 0 .1-.1.3-.2.3-1.1.5-2.3.8-3.5 1-.1 0-.2.2-.1.4.1.3.2.7.3 1 .1.2.2.3.2.4.2.1.3.2.5.3.1.1.2.1.1.2l-.3 1.1c0 .1-.1.2-.2.2zm-7.5-7.3c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1 1.1-.5 1.1-1.1-.5-1.1-1.1-1.1zm7 0c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1 1.1-.5 1.1-1.1-.5-1.1-1.1-1.1z" fill="#fff"/>
+        </svg>
+        Discord: <strong>p1eter__</strong>
+        <span class="visually-hidden">(opens in new tab)</span>
+      </a>
+      <a href="https://www.tiktok.com/@p1eter6" class="contact-link" target="_blank" rel="noopener" aria-label="TikTok (@p1eter6 opens in new tab)">
+        <svg aria-hidden="true" viewBox="0 0 32 32" width="20" height="20" fill="currentColor" focusable="false">
+          <circle cx="16" cy="16" r="16" fill="#000"/>
+          <path d="M22.4 10.7c-.6 0-1.2-.1-1.7-.3V18c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.2 0 .5 0 .7.1v2.3c-.2-.1-.5-.1-.7-.1-1 0-1.7.8-1.7 1.7s.8 1.7 1.7 1.7 1.7-.8 1.7-1.7v-8.2h2c0 1.2 1 2.2 2.2 2.2v2.3z" fill="#fff"/>
+        </svg>
+        TikTok: <strong>@p1eter6</strong>
+        <span class="visually-hidden">(opens in new tab)</span>
+      </a>
+      <a href="mailto:juzephsigma@gmail.com" class="contact-link" aria-label="Email (juzephsigma@gmail.com)">
+        <svg aria-hidden="true" viewBox="0 0 32 32" width="20" height="20" fill="currentColor" focusable="false">
+          <rect x="4" y="8" width="24" height="16" rx="3" fill="#fff" stroke="#333" stroke-width="2"/>
+          <polyline points="6,10 16,20 26,10" fill="none" stroke="#333" stroke-width="2"/>
+        </svg>
+        Email: <strong>juzephsigma@gmail.com</strong>
+      </a>
+    </footer>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
