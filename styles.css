@@ -1,59 +1,100 @@
-body {
-  font-family: Arial, sans-serif;
+/* Reset i ustawienia ogólne */
+* {
   margin: 0;
   padding: 0;
-  line-height: 1.6;
-  color: #333;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0e0e0e;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+/* Nawigacja */
 header {
-  background-color: #f7f7f7;
-  padding: 10px 0;
+  background-color: #1a1a1a;
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
 }
 
 nav ul {
-  list-style: none;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 0;
-  margin: 0;
+  list-style: none;
+  gap: 30px;
 }
 
 nav a {
+  color: #ffffff;
   text-decoration: none;
-  color: #333;
   font-weight: bold;
+  transition: color 0.3s;
 }
 
+nav a:hover {
+  color: #00bfff;
+}
+
+/* Sekcje główne */
 main {
   max-width: 800px;
-  margin: 20px auto;
-  padding: 0 15px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-.intro, .plans, .contact, .badges {
-  margin-bottom: 40px;
+section {
+  margin-bottom: 60px;
 }
 
-.intro h2, .plans h3, .contact h3, .badges h3 {
-  margin-top: 0;
+h2, h3 {
+  color: #00bfff;
+  margin-bottom: 20px;
 }
 
+p {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+/* Odnośniki */
+a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Odznaki */
 .badge-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .badge-container img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
+  border: 2px solid #444;
+  border-radius: 10px;
+  transition: transform 0.3s;
 }
 
+.badge-container img:hover {
+  transform: scale(1.1);
+}
+
+/* Stopka */
 footer {
   text-align: center;
-  padding: 15px 0;
-  background-color: #f0f0f0;
+  padding: 20px 0;
+  background-color: #1a1a1a;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+  color: #888;
 }
