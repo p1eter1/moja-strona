@@ -188,7 +188,7 @@ strong {
 /* Footer / Contact links */
 .footer {
   background: var(--color-footer);
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: 0 0 var(--radius) var(--radius;
   padding: var(--space-sm) var(--space);
   display: flex;
   flex-wrap: wrap;
