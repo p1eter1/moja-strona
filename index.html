@@ -4,132 +4,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>P1ETER — profile (Windows XP style)</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>P1ETER — profile</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Skip link for accessibility -->
-  <a class="skip-link" href="#main-window">Skip to content</a>
-
-  <!-- Faux desktop background -->
-  <div id="desktop" class="theme-luna" data-theme="luna" tabindex="-1">
-    <svg class="bg-hills" aria-hidden="true" viewBox="0 0 1000 250" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="skyGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#b8e1ff"/>
-          <stop offset="1" stop-color="#7db9ff"/>
-        </linearGradient>
-        <linearGradient id="hillGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stop-color="#98d06a"/>
-          <stop offset="1" stop-color="#63b33a"/>
-        </linearGradient>
-      </defs>
-      <rect x="0" y="0" width="1000" height="250" fill="url(#skyGrad)"></rect>
-      <path d="M0,180 C150,100 350,160 500,140 C650,120 850,170 1000,140 L1000,250 L0,250 Z" fill="url(#hillGrad)"></path>
-    </svg>
-
-    <!-- Draggable window (the main content) -->
-    <div id="window" class="window" role="dialog" aria-labelledby="window-title" aria-describedby="window-desc" tabindex="0">
-      <div class="window-titlebar" id="titlebar" role="toolbar" aria-label="Window controls">
-        <div class="title-left">
-          <svg class="window-icon" viewBox="0 0 16 16" aria-hidden="true">
-            <rect x="1" y="1" width="6" height="6" rx="1" ry="1"></rect>
-            <rect x="9" y="1" width="6" height="6" rx="1" ry="1"></rect>
-            <rect x="1" y="9" width="6" height="6" rx="1" ry="1"></rect>
-            <rect x="9" y="9" width="6" height="6" rx="1" ry="1"></rect>
-          </svg>
-          <div class="title-text" id="window-title">My Computer — p1eter</div>
-        </div>
-        <div class="title-controls" id="title-controls">
-          <button class="btn title-btn" aria-label="Minimize" data-action="minimize" title="Minimize (English)">&minus;</button>
-          <button class="btn title-btn" aria-label="Restore" data-action="restore" title="Restore (English)">&square;</button>
-          <button class="btn title-btn close" aria-label="Close" data-action="close" title="Close (English)">&times;</button>
-        </div>
-      </div>
-
-      <div class="window-content" id="main-window">
-        <h1 id="window-desc">Cześć! Tu p1eter</h1>
-
-        <!-- Exact Polish content (verbatim as provided by user) -->
-        <div class="intro">
-          <p>Cześć! Tu p1eter<br>
-          Mam 15 lat i jestem polakiem. Interesuję się technologią, uwielbiam nowinki technologiczne, a także odkrywać, jak działają różne urządzenia. Lubię również bawić się sztuczną inteligencją – jest to świetnym rozwiązaniem na nudę.</p>
-
-          <p>Od niedawna uczę się programować, nie tylko w pythonie ale też w javascipt. Nie jestem jeszcze najlepszym programistą, ale znam podstawy pythona i javasript, a także HTML i CSS i staram się cały czas uczyć nowych rzeczy.</p>
-
-          <p>Chciałbym zaznaczyć, iż wygląd strony jest inspirowany stroną zrobioną przez patricktbp.</p>
-
-          <h2>Co mam w planach zrobić</h2>
-          <p>Nauczyć się programowawnia jeszcze lepiej, aby w przyszłosci kontynuować swoją pasje. Napisać jakąś gre.</p>
-
-          <h2>Gdzie możesz mnie znaleźć</h2>
-          <p>Możesz mnie znaleźć i porozmawiać na platformie Discord pod nazwą <strong>p1eter__</strong> lub śledząc mój profil na Tiktoku o nazwie <strong>p1eter6</strong>, a także na tej stronie. Jeśli wolisz kontakt bardziej bezpośredni, możesz napisać do mnie maila: <a class="mailto" href="mailto:juzephsigma@gmail.com">juzephsigma@gmail.com</a>.</p>
-
-          <p class="note">Note: external links open in a new tab.</p>
-
-          <div class="contacts">
-            <a class="contact-link" href="https://discord.com" target="_blank" rel="noopener" aria-label="Open Discord (opens in new tab)">Discord — p1eter__</a>
-            <a class="contact-link" href="https://www.tiktok.com/@p1eter6" target="_blank" rel="noopener" aria-label="Open TikTok (opens in new tab)">TikTok — @p1eter6</a>
-            <a class="contact-link" href="mailto:juzephsigma@gmail.com" aria-label="Send email">Email — juzephsigma@gmail.com</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="window-statusbar" aria-hidden="true">
-        <span>Ready</span>
-      </div>
+  <!-- Top navigation: tabs (each paragraph in its own tab) -->
+  <header class="topbar" role="banner">
+    <div class="brand">
+      <a href="/" aria-label="P1ETER homepage">P1ETER</a>
     </div>
 
-    <!-- Taskbar -->
-    <div id="taskbar" role="navigation" aria-label="Taskbar">
-      <button id="start-btn" class="start-btn" aria-haspopup="true" aria-expanded="false" aria-controls="start-menu" title="Start">Start</button>
-
-      <div id="taskbar-center" aria-hidden="true">
-        <!-- open windows could be shown here -->
+    <!-- Accessible tablist -->
+    <nav class="tabs" role="navigation" aria-label="Main content tabs">
+      <div role="tablist" aria-label="Sections" class="tablist" id="tablist">
+        <button role="tab" aria-selected="false" aria-controls="tab-intro" id="tab-btn-intro" class="tab">O mnie</button>
+        <button role="tab" aria-selected="false" aria-controls="tab-learn" id="tab-btn-learn" class="tab">Programowanie</button>
+        <button role="tab" aria-selected="false" aria-controls="tab-inspired" id="tab-btn-inspired" class="tab">Inspiracja</button>
+        <button role="tab" aria-selected="false" aria-controls="tab-plans" id="tab-btn-plans" class="tab">Co planuję</button>
+        <button role="tab" aria-selected="false" aria-controls="tab-contact" id="tab-btn-contact" class="tab">Gdzie mnie znaleźć</button>
       </div>
-
-      <div id="taskbar-right" role="status" aria-live="polite">
-        <div class="tray-item" title="Theme toggle">
-          <label class="theme-toggle">
-            <input id="theme-switch" type="checkbox" aria-label="Toggle theme">
-            <span class="toggle-label">Luna</span>
-          </label>
-        </div>
-        <div class="tray-item clock" aria-hidden="false" id="clock">00:00</div>
-      </div>
-    </div>
-
-    <!-- Start menu -->
-    <nav id="start-menu" class="start-menu" role="menu" aria-hidden="true" aria-labelledby="start-btn">
-      <div class="start-menu-header">
-        <strong>p1eter</strong>
-        <small>Profile</small>
-      </div>
-      <ul>
-        <li><button class="menu-btn" data-action="open-about">About (English)</button></li>
-        <li><a class="menu-link" href="https://discord.com" target="_blank" rel="noopener">Discord</a></li>
-        <li><a class="menu-link" href="https://www.tiktok.com/@p1eter6" target="_blank" rel="noopener">TikTok</a></li>
-        <li><a class="menu-link" href="mailto:juzephsigma@gmail.com">Email</a></li>
-      </ul>
     </nav>
+  </header>
 
-    <!-- About modal -->
-    <div id="about-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="about-title">
-      <div class="modal-window" role="document">
-        <header class="modal-header">
-          <h3 id="about-title">About this page</h3>
-          <button class="btn close-modal" aria-label="Close about dialog">&times;</button>
-        </header>
-        <div class="modal-body">
-          <p>This page is inspired by patricktbp's layout and styled to resemble Windows XP (Luna theme). UI labels are in English while the main content is in Polish.</p>
-          <p>Design and code are intended for learning and customization.</p>
-        </div>
-        <footer class="modal-footer">
-          <button class="btn" data-action="close-about">Close</button>
-        </footer>
+  <main class="wrap" id="main" tabindex="-1">
+    <!-- Content panels (each corresponds to a tab) -->
+    <section id="tab-intro" role="tabpanel" aria-labelledby="tab-btn-intro" class="panel" hidden>
+      <h1>Cześć! Tu p1eter</h1>
+      <p>
+        Cześć! Tu p1eter<br>
+        Mam 15 lat i jestem polakiem. Interesuję się technologią, uwielbiam nowinki technologiczne, a także odkrywać, jak działają różne urządzenia. Lubię również bawić się sztuczną inteligencją – jest to świetnym rozwiązaniem na nudę.
+      </p>
+    </section>
+
+    <section id="tab-learn" role="tabpanel" aria-labelledby="tab-btn-learn" class="panel" hidden>
+      <h1>Od niedawna uczę się programować</h1>
+      <p>
+        Od niedawna uczę się programować, nie tylko w pythonie ale też w javascipt. Nie jestem jeszcze najlepszym programistą, ale znam podstawy pythona i javasript, a także HTML i CSS i staram się cały czas uczyć nowych rzeczy.
+      </p>
+    </section>
+
+    <section id="tab-inspired" role="tabpanel" aria-labelledby="tab-btn-inspired" class="panel" hidden>
+      <h1>Inspiracja</h1>
+      <p>
+        Chciałbym zaznaczyć, iż wygląd strony jest inspirowany stroną zrobioną przez patricktbp.
+      </p>
+    </section>
+
+    <section id="tab-plans" role="tabpanel" aria-labelledby="tab-btn-plans" class="panel" hidden>
+      <h1>Co mam w planach zrobić</h1>
+      <p>
+        Co mam w planach zrobić<br>
+        Nauczyć się programowawnia jeszcze lepiej, aby w przyszłosci kontynuować swoją pasje. Napisać jakąś gre.
+      </p>
+    </section>
+
+    <section id="tab-contact" role="tabpanel" aria-labelledby="tab-btn-contact" class="panel" hidden>
+      <h1>Gdzie możesz mnie znaleźć</h1>
+      <p>
+        Możesz mnie znaleźć i porozmawiać na platformie Discord pod nazwą <strong>p1eter__</strong> lub śledząc mój profil na Tiktoku o nazwie <strong>p1eter6</strong>, a także na tej stronie. Jeśli wolisz kontakt bardziej bezpośredni, możesz napisać do mnie maila: <a href="mailto:juzephsigma@gmail.com">juzephsigma@gmail.com</a>.
+      </p>
+
+      <div class="contacts">
+        <a class="btn-link" href="https://discord.com" target="_blank" rel="noopener">Discord — p1eter__</a>
+        <a class="btn-link" href="https://www.tiktok.com/@p1eter6" target="_blank" rel="noopener">TikTok — @p1eter6</a>
+        <a class="btn-link" href="mailto:juzephsigma@gmail.com">Email — juzephsigma@gmail.com</a>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <small>© P1ETER — wygenerowane dla GitHub Pages. Last updated: <span id="updated"></span></small>
+  </footer>
 
   <script src="script.js"></script>
 </body>
