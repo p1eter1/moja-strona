@@ -1,100 +1,291 @@
-/* Reset i ustawienia ogólne */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* styles.css */
+/* Windows XP-inspired "Luna" theme with CSS variables and accessible layout.
+   Comments explain how to customize colors and content.
+*/
+
+/* CSS variables for theming */
+:root{
+  --xp-blue: #0b66c3;
+  --xp-blue-2: #3aa0ff;
+  --xp-dark: #083f7a;
+  --window-bg: #ffffff;
+  --window-text: #05203a;
+  --muted: #4a4a4a;
+  --status-bg: #e9f3ff;
+  --border-shadow: rgba(0,0,0,0.18);
+  --taskbar-height: 48px;
+  --radius: 4px;
+  --font-stack: "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0e0e0e;
-  color: #ffffff;
-  line-height: 1.6;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-stack);
+  background:linear-gradient(180deg,#cfe9ff 0%, #9fd0ff 100%);
+  color:var(--window-text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  overflow:hidden;
 }
 
-/* Nawigacja */
-header {
-  background-color: #1a1a1a;
-  padding: 20px 0;
-  border-bottom: 1px solid #333;
+/* Skip link */
+.skip-link{
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.skip-link:focus{
+  left:10px;
+  top:10px;
+  width:auto;
+  height:auto;
+  padding:8px 12px;
+  background:#fff;
+  color:#000;
+  z-index:9999;
+  border-radius:4px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.3);
 }
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 30px;
+/* Background decorative hills */
+.bg-hills{
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  height:35vh;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.95;
 }
 
-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
+/* Desktop container */
+#desktop{
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:520px;
+  overflow:hidden;
+  background:transparent;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:8vh;
 }
 
-nav a:hover {
-  color: #00bfff;
+/* Window styles */
+.window{
+  width:760px;
+  max-width:95%;
+  border-radius:6px;
+  background:var(--window-bg);
+  box-shadow:0 8px 22px var(--border-shadow), inset 0 1px 0 rgba(255,255,255,0.6);
+  border:2px solid rgba(0,0,0,0.06);
+  display:flex;
+  flex-direction:column;
+  z-index:10;
+  user-select:none;
+  transform-origin:top center;
+  animation: snapOpen 260ms ease-out;
 }
 
-/* Sekcje główne */
-main {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
+@keyframes snapOpen{
+  0%{transform:scale(0.96) translateY(10px); opacity:0}
+  100%{transform:none; opacity:1}
 }
 
-section {
-  margin-bottom: 60px;
+/* Titlebar */
+.window-titlebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(180deg,var(--xp-blue),var(--xp-blue-2));
+  color:white;
+  padding:6px 8px;
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,0.12);
+  cursor:move; /* indicates draggable */
+}
+.title-left{display:flex;align-items:center;gap:8px}
+.window-icon{width:18px;height:18px;fill:rgba(255,255,255,0.9)}
+.title-text{font-weight:600;font-size:14px}
+
+/* Title controls */
+.title-controls{display:flex;gap:6px}
+.btn{
+  border:2px solid rgba(0,0,0,0.2);
+  padding:2px 8px;
+  border-radius:3px;
+  background:linear-gradient(180deg, #f7f7f7, #e6e6e6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 0 rgba(0,0,0,0.05);
+  cursor:pointer;
+  font-size:14px;
+}
+.title-btn{min-width:28px; display:inline-flex; align-items:center; justify-content:center}
+.title-btn:focus{outline:3px solid rgba(58,160,255,0.35)}
+.title-btn.close{background:linear-gradient(180deg,#ff6b6b,#ff4c4c); color:white}
+.title-btn.close:focus{outline:3px solid rgba(255,76,76,0.28)}
+
+/* Content area */
+.window-content{
+  padding:20px;
+  color:var(--window-text);
+  line-height:1.45;
+  max-height:60vh;
+  overflow:auto;
+}
+.window-content h1{
+  font-size:20px;
+  margin:0 0 8px 0;
+}
+.window-content h2{
+  font-size:16px;
+  margin-top:14px;
+  margin-bottom:6px;
+}
+.intro p{margin:10px 0}
+.note{font-size:12px;color:var(--muted)}
+
+/* Contacts / links */
+.contacts{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.contact-link{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:4px;
+  background:linear-gradient(180deg,#f9fbff,#eef6ff);
+  text-decoration:none;
+  color:var(--xp-dark);
+  font-weight:600;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.contact-link:focus{outline:3px solid rgba(11,102,195,0.25)}
+
+/* Status bar */
+.window-statusbar{
+  padding:6px 10px;
+  font-size:13px;
+  background:var(--status-bg);
+  border-bottom-left-radius:6px;
+  border-bottom-right-radius:6px;
 }
 
-h2, h3 {
-  color: #00bfff;
-  margin-bottom: 20px;
+/* Taskbar */
+#taskbar{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:var(--taskbar-height);
+  background:linear-gradient(180deg, var(--xp-dark), #0d3b6a);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:6px 10px;
+  color:white;
+  z-index:50;
+}
+.start-btn{
+  background:linear-gradient(180deg,#fff,#dfe9ff);
+  border-radius:4px;
+  padding:6px 10px;
+  border:1px solid rgba(0,0,0,0.2);
+  font-weight:700;
+  color:var(--xp-dark);
+  cursor:pointer;
+}
+.start-btn:focus{outline:3px solid rgba(58,160,255,0.35)}
+
+#taskbar-center{flex:1;display:flex;align-items:center;justify-content:center;color:#e3f1ff;opacity:0.9}
+#taskbar-right{display:flex;align-items:center;gap:10px}
+
+/* Start menu */
+.start-menu{
+  position:fixed;
+  left:10px;
+  bottom:calc(var(--taskbar-height) + 8px);
+  width:220px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.12);
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  border-radius:6px;
+  padding:8px;
+  z-index:60;
+  display:none;
+}
+.start-menu[aria-hidden="false"]{display:block}
+.start-menu-header{padding:8px;border-bottom:1px solid rgba(0,0,0,0.06);margin-bottom:6px}
+.start-menu ul{list-style:none;margin:6px 0;padding:0}
+.start-menu li{margin:6px 0}
+.menu-btn, .menu-link{
+  width:100%;
+  text-align:left;
+  padding:6px 8px;
+  border-radius:4px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+}
+.menu-btn:focus, .menu-link:focus{outline:3px solid rgba(11,102,195,0.25); background:#f3f9ff}
+
+/* Modal */
+.modal{
+  position:fixed;
+  left:0; right:0; top:0; bottom:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.35);
+  z-index:100;
+}
+.modal[aria-hidden="false"]{display:flex}
+.modal-window{
+  width:440px;
+  max-width:92%;
+  background:#fff;
+  border-radius:6px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
+  overflow:hidden;
+}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(180deg,#f3f8ff,#eaf4ff);border-bottom:1px solid rgba(0,0,0,0.05)}
+.modal-body{padding:14px 16px}
+.modal-footer{padding:10px 16px;text-align:right;border-top:1px solid rgba(0,0,0,0.04)}
+
+/* Small responsive adjustments */
+@media (max-width:600px){
+  .window{width:94%; height:calc(100vh - var(--taskbar-height) - 24px); max-width:94%; border-radius:0}
+  .window-content{max-height:unset}
+  #taskbar{padding:6px}
+  .start-menu{left:6px; bottom:calc(var(--taskbar-height) + 6px); width:calc(100% - 12px)}
 }
 
-p {
-  margin-bottom: 15px;
-  font-size: 1.05rem;
+/* Theme: classic (gray) */
+.theme-classic{
+  --xp-blue: #8a8a8a;
+  --xp-blue-2: #bdbdbd;
+  --xp-dark: #656565;
+  --window-bg: #f2f2f2;
+  --window-text: #0b0b0b;
+  --status-bg: #efefef;
 }
 
-/* Odnośniki */
-a {
-  color: #00bfff;
-  text-decoration: none;
-}
+/* Small utilities */
+.hidden{display:none}
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Odznaki */
-.badge-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.badge-container img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border: 2px solid #444;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-
-.badge-container img:hover {
-  transform: scale(1.1);
-}
-
-/* Stopka */
-footer {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #1a1a1a;
-  border-top: 1px solid #333;
-  font-size: 0.9rem;
-  color: #888;
-}
+/* Clock */
+.clock{min-width:68px;text-align:center;padding:6px 8px;background:rgba(255,255,255,0.04);border-radius:4px;font-weight:600}
