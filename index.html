@@ -5,76 +5,45 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>P1ETER — profile</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Top navigation: tabs (each paragraph in its own tab) -->
-  <header class="topbar" role="banner">
-    <div class="brand">
-      <a href="/" aria-label="P1ETER homepage">P1ETER</a>
-    </div>
-
-    <!-- Accessible tablist -->
-    <nav class="tabs" role="navigation" aria-label="Main content tabs">
-      <div role="tablist" aria-label="Sections" class="tablist" id="tablist">
-        <button role="tab" aria-selected="false" aria-controls="tab-intro" id="tab-btn-intro" class="tab">O mnie</button>
-        <button role="tab" aria-selected="false" aria-controls="tab-learn" id="tab-btn-learn" class="tab">Programowanie</button>
-        <button role="tab" aria-selected="false" aria-controls="tab-inspired" id="tab-btn-inspired" class="tab">Inspiracja</button>
-        <button role="tab" aria-selected="false" aria-controls="tab-plans" id="tab-btn-plans" class="tab">Co planuję</button>
-        <button role="tab" aria-selected="false" aria-controls="tab-contact" id="tab-btn-contact" class="tab">Gdzie mnie znaleźć</button>
-      </div>
-    </nav>
+  <header class="tabs" role="tablist" aria-label="Nawigacja sekcji">
+    <button role="tab" aria-selected="true" data-target="tab-intro">Intro</button>
+    <button role="tab" data-target="tab-learn">Nauka</button>
+    <button role="tab" data-target="tab-inspire">Inspiration</button>
+    <button role="tab" data-target="tab-plans">Co mam w planach</button>
+    <button role="tab" data-target="tab-contact">Gdzie możesz mnie znaleźć</button>
   </header>
 
-  <main class="wrap" id="main" tabindex="-1">
-    <!-- Content panels (each corresponds to a tab) -->
-    <section id="tab-intro" role="tabpanel" aria-labelledby="tab-btn-intro" class="panel" hidden>
-      <h1>Cześć! Tu p1eter</h1>
-      <p>
-        Cześć! Tu p1eter<br>
-        Mam 15 lat i jestem polakiem. Interesuję się technologią, uwielbiam nowinki technologiczne, a także odkrywać, jak działają różne urządzenia. Lubię również bawić się sztuczną inteligencją – jest to świetnym rozwiązaniem na nudę.
-      </p>
+  <main>
+    <section id="tab-intro" class="tabpanel" role="tabpanel" tabindex="0">
+      <p>Cześć! Tu p1eter
+      Mam 15 lat i jestem polakiem. Interesuję się technologią, uwielbiam nowinki technologiczne, a także odkrywać, jak działają różne urządzenia. Lubię również bawić się sztuczną inteligencją – jest to świetnym rozwiązaniem na nudę.</p>
     </section>
 
-    <section id="tab-learn" role="tabpanel" aria-labelledby="tab-btn-learn" class="panel" hidden>
-      <h1>Od niedawna uczę się programować</h1>
-      <p>
-        Od niedawna uczę się programować, nie tylko w pythonie ale też w javascipt. Nie jestem jeszcze najlepszym programistą, ale znam podstawy pythona i javasript, a także HTML i CSS i staram się cały czas uczyć nowych rzeczy.
-      </p>
+    <section id="tab-learn" class="tabpanel" role="tabpanel" hidden>
+      <p>Od niedawna uczę się programować, nie tylko w pythonie ale też w javascipt. Nie jestem jeszcze najlepszym programistą, ale znam podstawy pythona i javasript, a także HTML i CSS i staram się cały czas uczyć nowych rzeczy.</p>
     </section>
 
-    <section id="tab-inspired" role="tabpanel" aria-labelledby="tab-btn-inspired" class="panel" hidden>
-      <h1>Inspiracja</h1>
-      <p>
-        Chciałbym zaznaczyć, iż wygląd strony jest inspirowany stroną zrobioną przez patricktbp.
-      </p>
+    <section id="tab-inspire" class="tabpanel" role="tabpanel" hidden>
+      <p>Chciałbym zaznaczyć, iż wygląd strony jest inspirowany stroną zrobioną przez patricktbp.</p>
     </section>
 
-    <section id="tab-plans" role="tabpanel" aria-labelledby="tab-btn-plans" class="panel" hidden>
-      <h1>Co mam w planach zrobić</h1>
-      <p>
-        Co mam w planach zrobić<br>
-        Nauczyć się programowawnia jeszcze lepiej, aby w przyszłosci kontynuować swoją pasje. Napisać jakąś gre.
-      </p>
+    <section id="tab-plans" class="tabpanel" role="tabpanel" hidden>
+      <h2>Co mam w planach zrobić</h2>
+      <p>Nauczyć się programowawnia jeszcze lepiej, aby w przyszłosci kontynuować swoją pasje. Napisać jakąś gre.</p>
     </section>
 
-    <section id="tab-contact" role="tabpanel" aria-labelledby="tab-btn-contact" class="panel" hidden>
-      <h1>Gdzie możesz mnie znaleźć</h1>
-      <p>
-        Możesz mnie znaleźć i porozmawiać na platformie Discord pod nazwą <strong>p1eter__</strong> lub śledząc mój profil na Tiktoku o nazwie <strong>p1eter6</strong>, a także na tej stronie. Jeśli wolisz kontakt bardziej bezpośredni, możesz napisać do mnie maila: <a href="mailto:juzephsigma@gmail.com">juzephsigma@gmail.com</a>.
+    <section id="tab-contact" class="tabpanel" role="tabpanel" hidden>
+      <h2>Gdzie możesz mnie znaleźć</h2>
+      <p>Możesz mnie znaleźć i porozmawiać na platformie Discord pod nazwą <strong>p1eter__</strong> lub śledząc mój profil na Tiktoku o nazwie <strong>p1eter6</strong>, a także na tej stronie. Jeśli wolisz kontakt bardziej bezpośredni, możesz napisać do mnie maila: <a href="mailto:juzephsigma@gmail.com">juzephsigma@gmail.com</a>.</p>
+      <p class="links">
+        <a href="https://discord.com" target="_blank" rel="noopener">Discord — p1eter__</a>
+        <a href="https://www.tiktok.com/@p1eter6" target="_blank" rel="noopener">TikTok — @p1eter6</a>
       </p>
-
-      <div class="contacts">
-        <a class="btn-link" href="https://discord.com" target="_blank" rel="noopener">Discord — p1eter__</a>
-        <a class="btn-link" href="https://www.tiktok.com/@p1eter6" target="_blank" rel="noopener">TikTok — @p1eter6</a>
-        <a class="btn-link" href="mailto:juzephsigma@gmail.com">Email — juzephsigma@gmail.com</a>
-      </div>
     </section>
   </main>
-
-  <footer class="footer" role="contentinfo">
-    <small>© P1ETER — wygenerowane dla GitHub Pages. Last updated: <span id="updated"></span></small>
-  </footer>
 
   <script src="script.js"></script>
 </body>
