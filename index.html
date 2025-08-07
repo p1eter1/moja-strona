@@ -1,100 +1,67 @@
-/* Reset i ustawienia ogólne */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p1etertogoat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Strona główna</a></li>
+      </ul>
+    </nav>
+  </header>
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0e0e0e;
-  color: #ffffff;
-  line-height: 1.6;
-}
+  <main>
+    <section class="intro">
+      <h2>Cześć! Tu p1eter</h2>
+      <p>
+        Mam 15 lat i jestem polakiem.
+        Interesuję się technologią, uwielbiam nowinki technologiczne, a także odkrywać, jak działają różne urządzenia.
+        Lubię również bawić się sztuczną inteligencją – jest to świetnym rozwiązaniem na nudę.
+      </p>
+      <p>
+        Od niedawna uczę się programować, nie tylko w pythonie ale też w javascipt.
+        Nie jestem jeszcze najlepszym programistą, ale znam podstawy pythona i javasript, a także HTML i CSS i staram się cały czas uczyć nowych rzeczy.
+      </p>
+      <p>
+        Chciałbym zaznaczyć, iż wygląd strony jest inspirowany stroną zrobioną przez  patricktbp.
+      </p>
+    </section>
 
-/* Nawigacja */
-header {
-  background-color: #1a1a1a;
-  padding: 20px 0;
-  border-bottom: 1px solid #333;
-}
+    <section class="plans">
+      <h3>Co mam w planach zrobić</h3>
+      <p>
+        Nauczyć się programowawnia jeszcze lepiej, aby w przyszłosci kontynuować swoją pasje.
+        Napisać jakąś gre.
+    </section>
 
-nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 30px;
-}
+    <section class="contact">
+      <h3>Gdzie możesz mnie znaleźć</h3>
+      <p>
+        Możesz mnie znaleźć i porozmawiać na platformie Discord pod nazwą p1eter__ lub śledząc mój profil na Tiktoku o nazwie p1eter6, a także na tej stronie. Jeśli wolisz kontakt bardziej bezpośredni,
+        możesz napisać do mnie maila: <a href="mailto:juzephsigma@gmail.com">juzephsigma@gmail.com</a>.
+      </p>
+    </section>
 
-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
+    <section class="badges">
+      <h3>Odznaki</h3>
+      <div class="badge-container">
+        <!-- Tutaj wstaw obrazki odznak -->
+        <img src="badge1.png" alt="Odznaka 1">
+        <img src="badge2.png" alt="Odznaka 2">
+        <!-- ... -->
+      </div>
+    </section>
+  </main>
 
-nav a:hover {
-  color: #00bfff;
-}
+  <footer>
+    <p>&copy; 2025 p1etertogoat</p>
+  </footer>
+</body>
+</html>
 
-/* Sekcje główne */
-main {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
 
-section {
-  margin-bottom: 60px;
-}
-
-h2, h3 {
-  color: #00bfff;
-  margin-bottom: 20px;
-}
-
-p {
-  margin-bottom: 15px;
-  font-size: 1.05rem;
-}
-
-/* Odnośniki */
-a {
-  color: #00bfff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Odznaki */
-.badge-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.badge-container img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border: 2px solid #444;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-
-.badge-container img:hover {
-  transform: scale(1.1);
-}
-
-/* Stopka */
-footer {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #1a1a1a;
-  border-top: 1px solid #333;
-  font-size: 0.9rem;
-  color: #888;
-}
