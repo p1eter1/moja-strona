@@ -1,5 +1,3 @@
-// script.js
-
 // Typing animation for main heading
 const mainHeading = document.querySelector('.main-heading');
 const headingText = "Cześć! Jestem p1eter";
@@ -10,7 +8,7 @@ function typeWriter() {
     idx++;
     setTimeout(typeWriter, idx < 4 ? 350 : 90 + Math.random() * 60);
   } else {
-    mainHeading.innerHTML = headingText; // remove caret at end
+    mainHeading.innerHTML = headingText;
   }
 }
 typeWriter();
@@ -29,7 +27,6 @@ function setActiveNavLink() {
       found = true;
     }
   });
-  // If at bottom, highlight Contact
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
     navLinks.forEach(link => link.classList.remove('active'));
     navLinks[navLinks.length - 1].classList.add('active');
@@ -38,7 +35,6 @@ function setActiveNavLink() {
 window.addEventListener('scroll', setActiveNavLink);
 window.addEventListener('DOMContentLoaded', setActiveNavLink);
 
-// Smooth scroll for nav links
 navLinks.forEach(link => {
   link.addEventListener('click', function(e) {
     const hash = this.getAttribute('href');
@@ -49,7 +45,6 @@ navLinks.forEach(link => {
         window.scrollTo({ top: target.offsetTop - 55, behavior: 'smooth' });
         setTimeout(() => target.setAttribute('tabindex', '-1'), 400);
       }
-      // For mobile nav, close menu after click
       document.getElementById('nav-links').classList.remove('open');
       document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
     }
@@ -64,6 +59,12 @@ navToggle.addEventListener('click', function() {
   const expanded = nav.classList.contains('open');
   navToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 });
+navToggle.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    navToggle.click();
+  }
+});
 
 // Fade-in on scroll for sections and elements
 function handleFadeInOnScroll() {
@@ -74,7 +75,6 @@ function handleFadeInOnScroll() {
       el.classList.add('visible');
     }
   });
-  // Animate skills progress bars
   document.querySelectorAll('.skill-card').forEach(card => {
     const rect = card.getBoundingClientRect();
     if (rect.top < window.innerHeight - 80) {
@@ -91,48 +91,31 @@ function handleFadeInOnScroll() {
 window.addEventListener('scroll', handleFadeInOnScroll);
 window.addEventListener('DOMContentLoaded', handleFadeInOnScroll);
 
-// Animated progress bars on skills
-document.querySelectorAll('.skill-card').forEach(card => {
-  // No-op for now, handled in fade-in above
-});
-
-// Project card hover (optional: can add more JS effects here if needed)
-
 // Contact form validation and feedback
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 contactForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  // Very basic client-side validation
   const name = contactForm.name.value.trim();
   const email = contactForm.email.value.trim();
   const message = contactForm.message.value.trim();
   if (!name || !email || !message) {
-    formStatus.textContent = "Please fill in all fields.";
+    formStatus.textContent = "Uzupełnij wszystkie pola.";
     formStatus.style.color = "#ff364e";
     return;
   }
   if (!/^[\w\-\.\+]+@([\w-]+\.)+[\w-]{2,20}$/.test(email)) {
-    formStatus.textContent = "Please enter a valid email address.";
+    formStatus.textContent = "Wpisz poprawny adres e-mail.";
     formStatus.style.color = "#ff364e";
     return;
   }
-  // Simulate sending
-  formStatus.textContent = "Sending...";
+  formStatus.textContent = "Wysyłanie...";
   formStatus.style.color = "#ea0029";
   setTimeout(() => {
-    formStatus.textContent = "Thank you for your message!";
+    formStatus.textContent = "Dziękuję za wiadomość!";
     formStatus.style.color = "#4be49a";
     contactForm.reset();
   }, 1200);
-});
-
-// Keyboard accessibility for nav toggle
-navToggle.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    navToggle.click();
-  }
 });
 
 // Typing caret
@@ -140,3 +123,187 @@ const styleCaret = document.createElement('style');
 styleCaret.innerHTML = `.caret { border-right: 2.5px solid #ff364e; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }`;
 document.head.appendChild(styleCaret);
+
+// -------- MODALS --------
+function closeModals() {
+  document.querySelectorAll('.modal').forEach(m => m.classList.remove('open'));
+  document.querySelector('.modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function openModal(id) {
+  closeModals();
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add('open');
+    document.querySelector('.modal-backdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Focus logic for accessibility
+    setTimeout(() => {
+      const focusable = modal.querySelector('button, input, [tabindex]:not([tabindex="-1"])');
+      if (focusable) focusable.focus();
+    }, 100);
+  }
+}
+document.querySelectorAll('[data-modal]').forEach(btn => {
+  btn.addEventListener('click', function() { openModal(this.dataset.modal); });
+});
+document.querySelectorAll('.close-modal').forEach(btn => {
+  btn.addEventListener('click', closeModals);
+});
+document.querySelector('.modal-backdrop').addEventListener('click', closeModals);
+window.addEventListener('keydown', function(e) {
+  if (e.key === "Escape") closeModals();
+});
+
+// -------- KALKULATOR --------
+const calcDisplay = document.getElementById('calc-display');
+if (calcDisplay) {
+  const calcBtns = Array.from(document.querySelectorAll('.calc-buttons button'));
+  let calcValue = '';
+  function updateCalcDisplay() { calcDisplay.value = calcValue; }
+  function safeEval(expr) {
+    try {
+      // Only numbers, . and operators
+      if (!/^[\d+\-*/.() ]+$/.test(expr)) return "";
+      // eslint-disable-next-line no-eval
+      let result = eval(expr);
+      if (typeof result === "number" && isFinite(result)) return result;
+      return "";
+    } catch { return ""; }
+  }
+  calcBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const val = this.textContent;
+      if (val === 'C') {
+        calcValue = '';
+      } else if (val === '=') {
+        const res = safeEval(calcValue);
+        if (res === "") calcValue = "";
+        else calcValue = String(res);
+      } else {
+        if (calcValue.length < 22) calcValue += val;
+      }
+      updateCalcDisplay();
+    });
+  });
+  document.getElementById('calc-clear').addEventListener("click", function() {
+    calcValue = '';
+    updateCalcDisplay();
+  });
+}
+
+// -------- SNAKE GAME --------
+const snakeCanvas = document.getElementById('snake-canvas');
+if (snakeCanvas) {
+  const ctx = snakeCanvas.getContext('2d');
+  const box = 15;
+  let snake, direction, food, interval, score, gameOver, pendingDir;
+
+  function initSnake() {
+    snake = [{x: 7, y: 10}];
+    direction = 'RIGHT';
+    pendingDir = null;
+    score = 0;
+    gameOver = false;
+    spawnFood();
+    updateScore();
+  }
+  function spawnFood() {
+    food = {
+      x: Math.floor(Math.random()*20),
+      y: Math.floor(Math.random()*20)
+    };
+    // Don't spawn on snake
+    if (snake.some(s => s.x === food.x && s.y === food.y)) spawnFood();
+  }
+  function updateScore() {
+    document.getElementById('snake-score').textContent = score;
+  }
+  function drawSnake() {
+    ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+    // Draw food
+    ctx.fillStyle = "#ea0029";
+    ctx.fillRect(food.x*box, food.y*box, box, box);
+    // Draw snake
+    for(let i=0;i<snake.length;i++){
+      ctx.fillStyle = i === 0 ? "#fff" : "#b6b6b6";
+      ctx.fillRect(snake[i].x*box, snake[i].y*box, box, box);
+      ctx.strokeStyle = "#23232b";
+      ctx.strokeRect(snake[i].x*box, snake[i].y*box, box, box);
+    }
+  }
+  function moveSnake() {
+    if (gameOver) return;
+    // Handle pending direction to avoid double-reverse
+    if (pendingDir) {
+      direction = pendingDir;
+      pendingDir = null;
+    }
+    let head = {...snake[0]};
+    if (direction === "LEFT") head.x--;
+    if (direction === "UP") head.y--;
+    if (direction === "RIGHT") head.x++;
+    if (direction === "DOWN") head.y++;
+    // Wall collision
+    if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20) return endGame();
+    // Self collision
+    if (snake.some(part => part.x === head.x && part.y === head.y)) return endGame();
+    snake.unshift(head);
+    // Eat food
+    if (head.x === food.x && head.y === food.y) {
+      score++;
+      updateScore();
+      spawnFood();
+    } else {
+      snake.pop();
+    }
+    drawSnake();
+  }
+  function endGame() {
+    gameOver = true;
+    clearInterval(interval);
+    ctx.font = "bold 22px Poppins,Arial,sans-serif";
+    ctx.fillStyle = "#ea0029";
+    ctx.textAlign = "center";
+    ctx.fillText("Koniec gry!", snakeCanvas.width/2, snakeCanvas.height/2-10);
+    ctx.font = "16px Poppins,Arial,sans-serif";
+    ctx.fillStyle = "#fff";
+    ctx.fillText("Wynik: " + score, snakeCanvas.width/2, snakeCanvas.height/2+20);
+  }
+  function startGame() {
+    initSnake();
+    drawSnake();
+    clearInterval(interval);
+    interval = setInterval(moveSnake, 110);
+    snakeCanvas.focus();
+  }
+  document.getElementById('snake-restart').addEventListener('click', startGame);
+  // Modal open event: start game on open
+  document.querySelector('[data-modal="snake-modal"]').addEventListener('click', function() {
+    setTimeout(startGame, 350);
+  });
+  // Keyboard controls
+  snakeCanvas.addEventListener('keydown', function(e) {
+    const key = e.key;
+    let newDir = direction;
+    if      (key === "ArrowLeft" && direction !== "RIGHT") newDir = "LEFT";
+    else if (key === "ArrowUp" && direction !== "DOWN") newDir = "UP";
+    else if (key === "ArrowRight" && direction !== "LEFT") newDir = "RIGHT";
+    else if (key === "ArrowDown" && direction !== "UP") newDir = "DOWN";
+    if (newDir !== direction) pendingDir = newDir;
+    if (gameOver && (key === "Enter" || key === " " || key === "ArrowUp")) startGame();
+  });
+  // Click on canvas focuses for keyboard
+  snakeCanvas.addEventListener('click', function(){ this.focus(); });
+}
+
+// Accessibility: focus modal on open and remove tabindex on close
+document.querySelectorAll('.modal').forEach(m => {
+  m.addEventListener('transitionend', function() {
+    if (!m.classList.contains('open')) {
+      const inputs = m.querySelectorAll('[tabindex]');
+      inputs.forEach(i => { if(+i.getAttribute('tabindex')===-1) i.removeAttribute('tabindex'); });
+    }
+  });
+});
