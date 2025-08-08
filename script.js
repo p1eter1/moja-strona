@@ -1,4 +1,4 @@
-// Typing animation for main heading
+
 const mainHeading = document.querySelector('.main-heading');
 const headingText = "Cześć! Jestem p1eter";
 let idx = 0;
@@ -13,7 +13,7 @@ function typeWriter() {
 }
 typeWriter();
 
-// Navigation active link underline and smooth scroll
+
 const navLinks = document.querySelectorAll('.nav-link');
 function setActiveNavLink() {
   let scrollPos = window.scrollY || window.pageYOffset;
@@ -51,7 +51,7 @@ navLinks.forEach(link => {
   });
 });
 
-// Responsive nav toggle
+
 const navToggle = document.querySelector('.nav-toggle');
 navToggle.addEventListener('click', function() {
   const nav = document.getElementById('nav-links');
@@ -66,7 +66,7 @@ navToggle.addEventListener('keydown', function(e) {
   }
 });
 
-// Fade-in on scroll for sections and elements
+
 function handleFadeInOnScroll() {
   const fadeElems = document.querySelectorAll('.fade-in-on-scroll');
   fadeElems.forEach(el => {
@@ -81,7 +81,7 @@ function handleFadeInOnScroll() {
       card.classList.add('visible');
       const progress = card.querySelector('.progress');
       if(progress && progress.style.width.match(/^\d+%$/)) {
-        // already set
+     
       } else if(progress) {
         progress.style.width = progress.parentElement.dataset.width || "50%";
       }
@@ -91,7 +91,7 @@ function handleFadeInOnScroll() {
 window.addEventListener('scroll', handleFadeInOnScroll);
 window.addEventListener('DOMContentLoaded', handleFadeInOnScroll);
 
-// Contact form validation and feedback
+
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 contactForm.addEventListener('submit', function(e) {
@@ -118,13 +118,13 @@ contactForm.addEventListener('submit', function(e) {
   }, 1200);
 });
 
-// Typing caret
+
 const styleCaret = document.createElement('style');
 styleCaret.innerHTML = `.caret { border-right: 2.5px solid #ff364e; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }`;
 document.head.appendChild(styleCaret);
 
-// -------- MODALS --------
+
 function closeModals() {
   document.querySelectorAll('.modal').forEach(m => m.classList.remove('open'));
   document.querySelector('.modal-backdrop').classList.remove('open');
@@ -138,7 +138,7 @@ function openModal(id) {
     modal.classList.add('open');
     document.querySelector('.modal-backdrop').classList.add('open');
     document.body.style.overflow = 'hidden';
-    // Focus logic for accessibility
+    
     setTimeout(() => {
       const focusable = modal.querySelector('button, input, [tabindex]:not([tabindex="-1"])');
       if (focusable) focusable.focus();
@@ -156,7 +156,7 @@ window.addEventListener('keydown', function(e) {
   if (e.key === "Escape") closeModals();
 });
 
-// -------- KALKULATOR --------
+
 const calcDisplay = document.getElementById('calc-display');
 if (calcDisplay) {
   const calcBtns = Array.from(document.querySelectorAll('.calc-buttons button'));
@@ -193,7 +193,7 @@ if (calcDisplay) {
   });
 }
 
-// -------- SNAKE GAME --------
+
 const snakeCanvas = document.getElementById('snake-canvas');
 if (snakeCanvas) {
   const ctx = snakeCanvas.getContext('2d');
@@ -214,7 +214,7 @@ if (snakeCanvas) {
       x: Math.floor(Math.random()*20),
       y: Math.floor(Math.random()*20)
     };
-    // Don't spawn on snake
+   
     if (snake.some(s => s.x === food.x && s.y === food.y)) spawnFood();
   }
   function updateScore() {
@@ -222,10 +222,10 @@ if (snakeCanvas) {
   }
   function drawSnake() {
     ctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-    // Draw food
+  
     ctx.fillStyle = "#ea0029";
     ctx.fillRect(food.x*box, food.y*box, box, box);
-    // Draw snake
+  
     for(let i=0;i<snake.length;i++){
       ctx.fillStyle = i === 0 ? "#fff" : "#b6b6b6";
       ctx.fillRect(snake[i].x*box, snake[i].y*box, box, box);
@@ -235,7 +235,7 @@ if (snakeCanvas) {
   }
   function moveSnake() {
     if (gameOver) return;
-    // Handle pending direction to avoid double-reverse
+
     if (pendingDir) {
       direction = pendingDir;
       pendingDir = null;
@@ -245,12 +245,12 @@ if (snakeCanvas) {
     if (direction === "UP") head.y--;
     if (direction === "RIGHT") head.x++;
     if (direction === "DOWN") head.y++;
-    // Wall collision
+   
     if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20) return endGame();
-    // Self collision
+   
     if (snake.some(part => part.x === head.x && part.y === head.y)) return endGame();
     snake.unshift(head);
-    // Eat food
+    
     if (head.x === food.x && head.y === food.y) {
       score++;
       updateScore();
@@ -279,11 +279,11 @@ if (snakeCanvas) {
     snakeCanvas.focus();
   }
   document.getElementById('snake-restart').addEventListener('click', startGame);
-  // Modal open event: start game on open
+ 
   document.querySelector('[data-modal="snake-modal"]').addEventListener('click', function() {
     setTimeout(startGame, 350);
   });
-  // Keyboard controls
+  
   snakeCanvas.addEventListener('keydown', function(e) {
     const key = e.key;
     let newDir = direction;
@@ -294,11 +294,11 @@ if (snakeCanvas) {
     if (newDir !== direction) pendingDir = newDir;
     if (gameOver && (key === "Enter" || key === " " || key === "ArrowUp")) startGame();
   });
-  // Click on canvas focuses for keyboard
+  
   snakeCanvas.addEventListener('click', function(){ this.focus(); });
 }
 
-// Accessibility: focus modal on open and remove tabindex on close
+
 document.querySelectorAll('.modal').forEach(m => {
   m.addEventListener('transitionend', function() {
     if (!m.classList.contains('open')) {
