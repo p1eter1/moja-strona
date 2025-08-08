@@ -1,8 +1,3 @@
-/* styles.css */
-/*
-  THEME VARIABLES:
-  To change colors or font, edit :root below.
-*/
 :root {
   --color-bg: #15171b;
   --color-bg-card: #1b1d22;
@@ -26,9 +21,9 @@
   --nav-height: 64px;
   --max-width: 1050px;
   --section-pad: 4rem;
+  --modal-z: 200;
 }
 
-/* Reset and base styles */
 html, body {
   margin: 0;
   padding: 0;
@@ -317,15 +312,144 @@ main {
   text-decoration: underline;
   font-weight: 600;
   font-size: 1rem;
-  transition: color .22s;
+  transition: color .22s, background .18s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
 }
+.project-link:hover, .project-link:focus {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 .project-card:hover, .project-card:focus-within {
   transform: translateY(-9px) scale(1.045);
   box-shadow: 0 16px 38px 0 #ea002966;
   background: #191924;
 }
-.project-link:hover, .project-link:focus {
-  color: var(--color-accent);
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: var(--modal-z);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 12px 38px #000c;
+  padding: 1.4rem 1.6rem 1.4rem 1.6rem;
+  min-width: 280px;
+  max-width: 95vw;
+  max-height: 96vh;
+  overflow-y: auto;
+  animation: modalIn .45s cubic-bezier(.61,.17,.41,.97);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translate(-50%,-60%) scale(0.97);}
+  to   { opacity: 1; transform: translate(-50%,-50%) scale(1);}
+}
+.modal.open { display: block; }
+.modal-backdrop {
+  display: none;
+  position: fixed; z-index: calc(var(--modal-z) - 1);
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: #000a;
+  backdrop-filter: blur(2px);
+}
+.modal-backdrop.open { display: block; }
+
+/* Modal close button */
+.close-modal {
+  position: absolute;
+  top: 1.1rem; right: 1.1rem;
+  background: none;
+  border: none;
+  font-size: 2.1rem;
+  color: var(--color-accent-light);
+  cursor: pointer;
+  z-index: 9;
+  transition: color .19s;
+}
+.close-modal:hover, .close-modal:focus { color: var(--color-accent); }
+
+/* Calculator Styles */
+#calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  margin: 0 auto;
+}
+#calc-display {
+  width: 100%;
+  padding: .55em;
+  font-size: 1.1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 6px;
+  background: #23232b;
+  color: #fff;
+  margin-bottom: 1em;
+  text-align: right;
+}
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .7em;
+  width: 100%;
+}
+.calc-buttons button {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: .7em 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .16s, transform .15s;
+  box-shadow: 0 2px 8px #ea002955;
+}
+.calc-buttons button:hover, .calc-buttons button:focus {
+  background: var(--color-accent-light);
+  transform: scale(1.08);
+}
+
+/* Snake Styles */
+#snake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .8em;
+}
+#snake-canvas {
+  background: #222;
+  border: 2.5px solid var(--color-accent);
+  border-radius: 7px;
+  display: block;
+  margin-bottom: .6em;
+}
+.snake-controls {
+  text-align: center;
+  color: var(--color-text-dim);
+}
+.snake-controls button {
+  margin-top: .5em;
+  padding: .5em 1.4em;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .16s;
+}
+.snake-controls button:hover, .snake-controls button:focus {
+  background: var(--color-accent-light);
 }
 
 /* Contact */
@@ -384,7 +508,6 @@ input:focus, textarea:focus {
   transform: translateY(-2px) scale(1.03);
 }
 
-/* Form status */
 #form-status {
   font-size: 1rem;
   min-height: 1.2em;
@@ -460,6 +583,8 @@ footer {
   .nav-toggle {
     display: flex;
   }
+  .modal { min-width: 0; padding: 1.2rem .6rem 1.1rem .6rem }
+  #calculator { width: 100%; }
 }
 
 @media (max-width: 430px) {
