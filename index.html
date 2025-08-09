@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zespół Szkół Elektrycznych nr 1 w Krakowie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Zespół Szkół Elektrycznych nr 1 w Krakowie</h1>
+        <nav>
+            <u1>
+                <li><a href="#o-szkole">O Szkole</a></li>
+                <li><a href="#kierunki">Kierunki</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="Kontakt">Kontakt</a></li>
+            </u1>
+        </nav>
+    </header>
+<main>
+    <section id="o-szkole">
+        <h2>O Szkole</h2>
+        <p>
+            Zespół Szkół Elektrycznych nr 1 im. Powstańców Śląskich w Krakowie to nowoczesna placówka edukacyjna z długą tradycją, kształcąca przyszłych techników i specjalistów w dziedzinie energetyki, informatyki i automatyki. Szkoła oferuje wysoki poziom nauczania oraz liczne zajęcia dodatkowe i koła zainteresowań.
+        </p>
+    </section>
+    <section id="kierunki">
+        <h2>Kierunki kształcenia<</h2>
+        <u1>
+            <li>Technik elektryk</li>
+            <li>Technik elektronik</li>
+            <li>Technik informatyk</li>
+            <li>Technik automatyk</li>
+        </u1>
+    </section>
+    <section id="galeria">
+        <h2>Galeria</h2>
+        <div class="gallery">
+            <img src="https://zse.krakow.pl/foto/szkola1.jpg" alt="Budynek szkoły" onclick="showImage(this)">
+            <img src="https://zse.krakow.pl/foto/szkola2.jpg" alt="Uczniowie w pracowni" onclick="showImage(this)">
+            <img src="https://zse.krakow.pl/foto/szkola3.jpg" alt="Wydarzenie szkolne" onclick="showImage(this)">
+        </div>
+        <div id="lightbox" onclick="hideLightbox()">
+            <img id="lightbox-img" scr="" alt="Podgląd zdjęcia">
+        </div>
+        </section>
+        <section id="kontakt">
+            <h2>Kontakt</h2>
+            <address>
+                ul. Kamieńskiego 49<br>
+                30-644 Kraków<br>
+                Tel: <a href="tel:+48126546672">12 654 66 72</a><br>
+                Email: <a href="mailto:sekretariat@zse.krakow.pl">sekretariat@zse.krakow.pl</a>
+            </address>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Zespół Szkół Elektrycznych nr 1 w Krakowie</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
